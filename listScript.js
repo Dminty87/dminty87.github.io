@@ -3,7 +3,7 @@
 
 
 function testScript(){
-    document.getElementById("output").innerHTML = "Success!Now"
+    document.getElementById("output").innerHTML = "Success! Current time: " + new Date()
 }
 
 
