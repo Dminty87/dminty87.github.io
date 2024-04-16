@@ -1,31 +1,24 @@
 
 
-
-
-function testScript(){
-    document.getElementById("output").innerHTML = "Success! Current time: " + new Date()
-}
-
-
 function loadXML(){
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("reqOut").innerHTML = "test"
+
+            const xmlDoc = req.responseXML
+
+            let list = new String()
+
+            for (const x of xmlDoc.documentElement.children)
+            {
+                list += "<li>" + x.textContent + "</li>\n"
+            }
+
+            document.getElementById("listName").innerText = xmlDoc.documentElement.getAttribute("name")
+            document.getElementById("listItems").innerHTML = list
         }
     }
 
     req.open("GET", "GeeSkillet.xml", true)
     req.send()
-}
-
-function testReq(){
-    var req = new XMLHttpRequest();
-    req.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("reqOut").innerHTML = "test"
-        }
-    }
-    req.open("GET", "GeeSkillet.xml", true)
-    req.send("testing")
 }
